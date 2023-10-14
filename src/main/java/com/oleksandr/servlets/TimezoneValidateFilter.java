@@ -12,10 +12,8 @@ import java.io.PrintWriter;
 public class TimezoneValidateFilter extends HttpFilter {
     @Override
     public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-            // Перехоплюємо запит та перевіряємо наявність та валідність параметру "timezone"
             String timezone = request.getParameter("timezone");
             if (timezone == null || isValidTimezone(timezone)) {
-                // Якщо параметр "timezone" валідний, продовжуємо ланцюг фільтрів та обробку запиту
                 chain.doFilter(request, response);
             } else {
                 response.setStatus(400);
